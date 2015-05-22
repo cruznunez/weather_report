@@ -10,15 +10,13 @@ end
 
 class ApplicationTest < Minitest::Test
 
-  # Gotta run migrations before we can run tests.  Down will fail the first time,
-  # so we wrap it in a begin/rescue.
   def setup
-
+    @summary = ConditionsSummary.new(27516)
   end
-
-  def teardown
-
-  end
+  #
+  # def teardown
+  #
+  # end
 
   def test_truth
     assert true
@@ -32,10 +30,11 @@ class ApplicationTest < Minitest::Test
     assert ConditionsSummary
   end
 
-  def test_conditions_summary_takes_zip_and_prints
-    summary1 = ConditionsSummary.new(27516)
-    summary2 = ConditionsSummary.new(27701)
-    assert_equal "http://www.wunderground.com/weather/api/d/terms.html" ,summary1.test
-    assert_equal "http://www.wunderground.com/weather/api/d/terms.html" ,summary2.test
+  def test_zip_is_accepted
+    assert_equal 27516, @summary.zip
+  end
+
+  def test_data_access
+    assert_equal "http://www.wunderground.com/weather/api/d/terms.html" , @summary.test
   end
 end
