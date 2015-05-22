@@ -1,4 +1,5 @@
 require './conditions_summary.rb'
+require "httparty"
 
 def welcome
   puts "FORECAST!!!!"
